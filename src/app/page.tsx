@@ -93,24 +93,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. CORPORATE AUTHORITY: AS SEEN ON / SPOKEN AT */}
-      <section className="py-12 bg-[#FAF8F5] border-b border-[#E8E5DF]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest text-[#5C6763] mb-8">
-            Trusted by Communities, Educational Alliances & Professional Platforms
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 items-center justify-center">
-            {platforms.map((platform, idx) => (
-              <div
-                key={idx}
-                className="flex items-center justify-center text-center p-3 rounded-xl border border-[#E8E5DF] bg-white text-xs font-medium text-[#5C6763] hover:text-[#035c17] hover:border-[#035c17]/30 transition-colors h-16 shadow-sm"
-              >
-                {platform}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* 4. IMPACT METRICS BAR */}
       <section className="py-16 bg-[#035c17] text-white">
