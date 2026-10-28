@@ -3,6 +3,7 @@ import { Playfair_Display, Inter } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import PreFooterPartner from '@/components/layout/PreFooterPartner';
 import WhatsAppBubble from '@/components/layout/WhatsAppBubble';
 
 const playfair = Playfair_Display({
@@ -33,6 +34,8 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col bg-[#FBF9F5] text-[#1C2421]">
         <Navbar />
         <main className="flex-grow">{children}</main>
+        {/* Universal Pre-Footer: Appears globally across all pages */}
+        <PreFooterPartner />
         <Footer />
         <WhatsAppBubble />
       </body>

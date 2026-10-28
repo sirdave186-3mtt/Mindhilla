@@ -2,9 +2,10 @@
 
 @layer base {
   :root {
-    --brand-primary: #0D3B2E;
-    /* Deep Botanical Emerald */
-    --brand-primary-light: #155744;
+    --brand-primary: #035c17;
+    /* Official MindHilla Forest Green */
+    --brand-primary-light: #0b7823;
+    --brand-primary-dark: #024010;
     --brand-secondary: #C5A059;
     /* Warm Gold / Sand */
     --brand-secondary-light: #D8B772;

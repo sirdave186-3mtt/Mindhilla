@@ -103,8 +103,8 @@ export default function Navbar() {
                     >
                         <button
                             className={`inline-flex items-center gap-1 text-sm font-medium transition-colors py-2 ${pathname.includes('garden') || pathname.includes('outreach') || pathname.includes('media')
-                                    ? 'text-[#0D3B2E] font-bold'
-                                    : 'text-[#5C6763] hover:text-[#0D3B2E]'
+                                ? 'text-[#0D3B2E] font-bold'
+                                : 'text-[#5C6763] hover:text-[#0D3B2E]'
                                 }`}
                         >
                             <span>Initiatives</span>
@@ -224,3 +224,10 @@ export default function Navbar() {
         </header>
     );
 }
+<Link
+    href="/account"
+    className="inline-flex items-center gap-2 bg-[#035c17] hover:bg-[#0b7823] text-white text-xs font-semibold px-4 py-2.5 rounded-full transition-all shadow-sm"
+>
+    <User className="w-3.5 h-3.5 text-[#C5A059]" />
+    <span>My Account</span>
+</Link>

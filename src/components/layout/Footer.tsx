@@ -1,124 +1,218 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
-import { Phone, Mail, MapPin, ShieldCheck } from 'lucide-react';
+import {
+    MessageCircle,
+    MapPin,
+    Phone,
+    Mail,
+    ShieldCheck
+} from 'lucide-react';
 
 export default function Footer() {
-    return (
-        <footer className="bg-[#08261D] text-[#FBF9F5] border-t border-[#124234]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+    const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '2349131897480';
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+        'Hello MindHilla, I would like to make an inquiry.'
+    )}`;
 
-                    {/* Brand & Stature */}
-                    <div className="lg:col-span-2 space-y-5">
+    return (
+        <footer className="bg-[#02280a] text-white border-t border-white/10 pt-16 pb-12">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+                {/* Main 4-Column Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+
+                    {/* Column 1: Brand & Socials (4 Cols) */}
+                    <div className="lg:col-span-4 space-y-5">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full bg-[#C5A059] flex items-center justify-center text-[#08261D] font-serif font-bold text-xl">
+                            <div className="w-10 h-10 rounded-full bg-[#035c17] border border-[#C5A059]/40 text-white flex items-center justify-center font-serif font-bold text-lg shadow-sm">
                                 M
                             </div>
-                            <span className="text-2xl font-bold font-serif tracking-tight text-white">
+                            <span className="text-2xl font-serif font-bold tracking-tight text-white">
                                 MindHilla
                             </span>
                         </div>
 
-                        <p className="text-stone-300 text-sm leading-relaxed max-w-sm">
+                        <p className="text-xs text-stone-300 leading-relaxed max-w-sm">
                             MindHilla is a premier healing and transformation brand dedicated to emotional wellness, identity restoration, healthy relationships, and purposeful living.
                         </p>
 
-                        <div className="flex items-center gap-2 text-xs text-[#C5A059] bg-[#0D3B2E] py-1.5 px-3 rounded-md w-fit border border-[#175240]">
-                            <ShieldCheck className="w-4 h-4" />
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] text-[#C5A059]">
+                            <ShieldCheck className="w-3.5 h-3.5" />
                             <span>Registered Entity • RC: 9193259</span>
                         </div>
 
-                        <div className="flex items-center space-x-3 pt-2">
-                            {/* Instagram SVG */}
+                        {/* Social Icons — Inline clean SVGs for brand reliability */}
+                        <div className="flex items-center gap-3 pt-2">
+                            {/* Instagram */}
                             <a
                                 href="https://instagram.com/mindhilla"
                                 target="_blank"
-                                rel="noreferrer"
-                                className="w-9 h-9 rounded-full bg-[#0D3B2E] flex items-center justify-center text-stone-300 hover:text-white hover:bg-[#C5A059] transition-all"
+                                rel="noopener noreferrer"
+                                className="w-10 h-10 rounded-full bg-white/5 border border-white/15 flex items-center justify-center text-stone-200 hover:text-[#C5A059] hover:border-[#C5A059] hover:bg-white/10 transition-all shadow-sm"
                                 aria-label="Instagram"
                             >
-                                <svg className="w-4 h-4 fill-none stroke-currentColor stroke-2 stroke-linecap-round stroke-linejoin-round" viewBox="0 0 24 24">
+                                <svg
+                                    className="w-4 h-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    viewBox="0 0 24 24"
+                                >
                                     <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
                                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                                     <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
                                 </svg>
                             </a>
 
-                            {/* Facebook SVG */}
+                            {/* Facebook */}
                             <a
                                 href="https://facebook.com/mindhilla"
                                 target="_blank"
-                                rel="noreferrer"
-                                className="w-9 h-9 rounded-full bg-[#0D3B2E] flex items-center justify-center text-stone-300 hover:text-white hover:bg-[#C5A059] transition-all"
+                                rel="noopener noreferrer"
+                                className="w-10 h-10 rounded-full bg-white/5 border border-white/15 flex items-center justify-center text-stone-200 hover:text-[#C5A059] hover:border-[#C5A059] hover:bg-white/10 transition-all shadow-sm"
                                 aria-label="Facebook"
                             >
-                                <svg className="w-4 h-4 fill-none stroke-currentColor stroke-2 stroke-linecap-round stroke-linejoin-round" viewBox="0 0 24 24">
+                                <svg
+                                    className="w-4 h-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    viewBox="0 0 24 24"
+                                >
                                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                                 </svg>
+                            </a>
+
+                            {/* WhatsApp */}
+                            <a
+                                href={whatsappUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-10 h-10 rounded-full bg-white/5 border border-white/15 flex items-center justify-center text-stone-200 hover:text-[#25D366] hover:border-[#25D366] hover:bg-white/10 transition-all shadow-sm"
+                                aria-label="WhatsApp Channel"
+                            >
+                                <MessageCircle className="w-4 h-4" />
                             </a>
                         </div>
                     </div>
 
-                    {/* Pathways */}
-                    <div className="space-y-4">
-                        <h4 className="text-sm font-semibold tracking-wider text-[#C5A059] uppercase">
+                    {/* Column 2: Pathways (3 Cols) */}
+                    <div className="lg:col-span-3 space-y-4">
+                        <h4 className="text-xs font-bold uppercase tracking-widest text-[#C5A059]">
                             Pathways
                         </h4>
-                        <ul className="space-y-2.5 text-sm text-stone-300">
-                            <li><Link href="/services#individual" className="hover:text-white transition">Individual Therapy</Link></li>
-                            <li><Link href="/services#couples" className="hover:text-white transition">Couples Counseling</Link></li>
-                            <li><Link href="/services#addiction" className="hover:text-white transition">Addiction Recovery</Link></li>
-                            <li><Link href="/academy" className="hover:text-white transition">MindHilla Academy</Link></li>
-                            <li><Link href="/academy#heartbreak" className="hover:text-white transition">Heartbreak Recovery</Link></li>
+                        <ul className="space-y-2.5 text-xs text-stone-300">
+                            <li>
+                                <Link href="/services#therapy" className="hover:text-white transition-colors">
+                                    Individual Therapy
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/services#therapy" className="hover:text-white transition-colors">
+                                    Couples Counseling
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/services#addiction" className="hover:text-white transition-colors">
+                                    Addiction Recovery
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/academy" className="hover:text-white transition-colors">
+                                    MindHilla Academy
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/academy#heartbreak-recovery" className="hover:text-white transition-colors">
+                                    Heartbreak Recovery
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 
-                    {/* Initiatives */}
-                    <div className="space-y-4">
-                        <h4 className="text-sm font-semibold tracking-wider text-[#C5A059] uppercase">
+                    {/* Column 3: Initiatives (2 Cols) */}
+                    <div className="lg:col-span-2 space-y-4">
+                        <h4 className="text-xs font-bold uppercase tracking-widest text-[#C5A059]">
                             Initiatives
                         </h4>
-                        <ul className="space-y-2.5 text-sm text-stone-300">
-                            <li><Link href="/garden-experience" className="hover:text-white transition">The Garden Experience</Link></li>
-                            <li><Link href="/school-outreach" className="hover:text-white transition">School Outreach</Link></li>
-                            <li><Link href="/media" className="hover:text-white transition">MindHilla TV & Media</Link></li>
-                            <li><Link href="/support" className="hover:text-white transition">Partner With Us</Link></li>
-                            <li><Link href="/blog" className="hover:text-white transition">Articles & Guides</Link></li>
+                        <ul className="space-y-2.5 text-xs text-stone-300">
+                            <li>
+                                <Link href="/garden-experience" className="hover:text-white transition-colors">
+                                    The Garden Experience
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/school-outreach" className="hover:text-white transition-colors">
+                                    School Outreach
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/media" className="hover:text-white transition-colors">
+                                    MindHilla TV & Media
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/support" className="hover:text-white transition-colors">
+                                    Partner With Us
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/blog" className="hover:text-white transition-colors">
+                                    Articles & Guides
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 
-                    {/* Abuja Office */}
-                    <div className="space-y-4">
-                        <h4 className="text-sm font-semibold tracking-wider text-[#C5A059] uppercase">
+                    {/* Column 4: Abuja Office (3 Cols) */}
+                    <div className="lg:col-span-3 space-y-4">
+                        <h4 className="text-xs font-bold uppercase tracking-widest text-[#C5A059]">
                             Abuja Office
                         </h4>
-                        <ul className="space-y-3 text-sm text-stone-300">
-                            <li className="flex items-start gap-2.5">
-                                <MapPin className="w-4 h-4 text-[#C5A059] shrink-0 mt-1" />
+                        <div className="space-y-3 text-xs text-stone-300">
+                            <div className="flex items-start gap-2.5">
+                                <MapPin className="w-4 h-4 text-[#C5A059] shrink-0 mt-0.5" />
                                 <span>5 Senanga Street, Wuse Zone 5, Abuja FCT, Nigeria</span>
-                            </li>
-                            <li className="flex items-center gap-2.5">
+                            </div>
+                            <div className="flex items-center gap-2.5">
                                 <Phone className="w-4 h-4 text-[#C5A059] shrink-0" />
-                                <a href="tel:+2349131897480" className="hover:text-white transition">+234 913 189 7480</a>
-                            </li>
-                            <li className="flex items-center gap-2.5">
+                                <a href="tel:+2349131897480" className="hover:text-white transition-colors">
+                                    +234 913 189 7480
+                                </a>
+                            </div>
+                            <div className="flex items-center gap-2.5">
                                 <Mail className="w-4 h-4 text-[#C5A059] shrink-0" />
-                                <a href="mailto:hello@mindhilla.com" className="hover:text-white transition">hello@mindhilla.com</a>
-                            </li>
-                        </ul>
+                                <a href="mailto:hello@mindhilla.com" className="hover:text-white transition-colors">
+                                    hello@mindhilla.com
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
 
-                {/* Bottom */}
-                <div className="mt-14 pt-8 border-t border-[#124234] flex flex-col sm:flex-row justify-between items-center text-xs text-stone-400 gap-4">
+                {/* Bottom Legal Bar */}
+                <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-stone-400">
                     <p>© 2026 MindHilla. All rights reserved.</p>
-                    <div className="flex items-center space-x-6">
-                        <Link href="/confidentiality" className="hover:underline">Clinical Confidentiality Notice</Link>
-                        <Link href="/privacy" className="hover:underline">Privacy Policy</Link>
-                        <Link href="/terms" className="hover:underline">Terms of Engagement</Link>
+                    <div className="flex items-center gap-6">
+                        <Link href="/contact" className="hover:text-white transition-colors">
+                            Clinical Confidentiality Notice
+                        </Link>
+                        <Link href="/contact" className="hover:text-white transition-colors">
+                            Privacy Policy
+                        </Link>
+                        <Link href="/contact" className="hover:text-white transition-colors">
+                            Terms of Engagement
+                        </Link>
                     </div>
                 </div>
+
             </div>
         </footer>
     );

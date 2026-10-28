@@ -12,7 +12,8 @@ import {
     AlertCircle,
     Loader2,
     MessageCircle,
-    ShieldCheck
+    ShieldCheck,
+    Building2
 } from 'lucide-react';
 
 export default function ContactPage() {
@@ -66,126 +67,148 @@ export default function ContactPage() {
     };
 
     return (
-        <div className="py-12 sm:py-20 space-y-16">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        <div className="flex flex-col">
+            {/* 1. CENTRALIZED CINEMATIC HERO SECTION */}
+            <section className="relative overflow-hidden bg-black text-white min-h-[520px] sm:min-h-[580px] flex items-center justify-center">
+                <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url('/images/partner/partner-bg.jpg')` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#024010]/85 via-black/75 to-black/90" />
 
-                {/* Header */}
-                <div className="max-w-3xl space-y-4">
-                    <span className="text-xs font-bold uppercase tracking-widest text-[#C5A059] bg-[#C5A059]/10 px-3 py-1 rounded-full border border-[#C5A059]/20">
-                        Reach Out
-                    </span>
-                    <h1 className="text-4xl sm:text-5xl font-serif font-bold text-[#0D3B2E] tracking-tight">
+                <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center flex flex-col items-center">
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/40 border border-white/20 text-xs font-semibold text-[#C5A059] backdrop-blur-md mb-6 shadow-sm">
+                        <Building2 className="w-3.5 h-3.5 text-[#C5A059]" />
+                        <span>Abuja Center & Global Inquiries</span>
+                    </div>
+
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-[1.18] max-w-3xl">
                         Connect with MindHilla
                     </h1>
-                    <p className="text-[#5C6763] text-base sm:text-lg leading-relaxed">
-                        Whether you wish to schedule an in-person consultation at our Abuja office, inquire about Academy programs, or ask a question, we are here to support your journey.
+
+                    <p className="text-stone-100 text-base sm:text-lg leading-relaxed max-w-2xl mt-4">
+                        Whether you wish to schedule an in-person consultation at our Abuja office, inquire about masterclasses, or propose a partnership, our team is here for you.
                     </p>
+
+                    <div className="pt-6">
+                        <a
+                            href={whatsappUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white text-sm font-semibold px-7 py-3.5 rounded-full transition-all shadow-lg hover:scale-105"
+                        >
+                            <MessageCircle className="w-4 h-4" />
+                            <span>Chat Immediately on WhatsApp</span>
+                        </a>
+                    </div>
                 </div>
+            </section>
 
-                {/* Contact Information & Office Details Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* 2. CONTACT INFORMATION CARDS */}
+            <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-                    {/* Card 1: Abuja Center */}
-                    <div className="bg-white p-8 rounded-2xl border border-[#E8E5DF] space-y-4 shadow-sm">
-                        <div className="w-12 h-12 rounded-xl bg-[#0D3B2E]/5 text-[#0D3B2E] flex items-center justify-center">
-                            <MapPin className="w-6 h-6" />
+                    {/* Physical Office Card */}
+                    <div className="bg-white p-8 rounded-3xl border border-[#E8E5DF] space-y-4 shadow-sm hover:shadow-md transition-shadow">
+                        <div className="w-12 h-12 rounded-2xl bg-[#035c17]/5 text-[#035c17] flex items-center justify-center">
+                            <MapPin className="w-6 h-6 text-[#C5A059]" />
                         </div>
-                        <h3 className="text-xl font-serif font-bold text-[#0D3B2E]">Physical Office</h3>
+                        <h3 className="text-xl font-serif font-bold text-[#035c17]">Abuja Office</h3>
                         <p className="text-sm text-[#5C6763] leading-relaxed">
                             5 Senanga Street, Wuse Zone 5,<br />
-                            Abuja FCT, Nigeria
+                            Abuja FCT, Nigeria[cite: 4]
                         </p>
-                        <div className="pt-2 text-xs text-[#C5A059] font-medium flex items-center gap-1.5">
-                            <ShieldCheck className="w-4 h-4 text-[#0D3B2E]" />
-                            <span>Private & Secure Consultation Suites</span>
+                        <div className="pt-2 text-xs text-[#035c17] font-semibold flex items-center gap-1.5">
+                            <ShieldCheck className="w-4 h-4 text-[#C5A059]" />
+                            <span>Private Consultation Suites (By Prior Booking)</span>
                         </div>
                     </div>
 
-                    {/* Card 2: Phone & WhatsApp */}
-                    <div className="bg-white p-8 rounded-2xl border border-[#E8E5DF] space-y-4 shadow-sm">
-                        <div className="w-12 h-12 rounded-xl bg-[#0D3B2E]/5 text-[#0D3B2E] flex items-center justify-center">
-                            <Phone className="w-6 h-6" />
+                    {/* Direct Line & WhatsApp Card */}
+                    <div className="bg-white p-8 rounded-3xl border border-[#E8E5DF] space-y-4 shadow-sm hover:shadow-md transition-shadow">
+                        <div className="w-12 h-12 rounded-2xl bg-[#035c17]/5 text-[#035c17] flex items-center justify-center">
+                            <Phone className="w-6 h-6 text-[#C5A059]" />
                         </div>
-                        <h3 className="text-xl font-serif font-bold text-[#0D3B2E]">Phone & Instant Chat</h3>
+                        <h3 className="text-xl font-serif font-bold text-[#035c17]">Direct Lines</h3>
                         <p className="text-sm text-[#5C6763] leading-relaxed">
-                            Direct Phone: <a href="tel:+2349131897480" className="text-[#0D3B2E] font-semibold hover:underline">+234 913 189 7480</a>
+                            Phone: <a href="tel:+2349131897480" className="text-[#035c17] font-bold hover:underline">+234 913 189 7480</a>[cite: 4]
                         </p>
                         <div className="pt-2">
                             <a
                                 href={whatsappUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition"
+                                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#035c17] hover:text-[#0b7823] transition"
                             >
-                                <MessageCircle className="w-4 h-4" />
-                                <span>Message on WhatsApp</span>
+                                <span>Instant WhatsApp Dispatch</span>
+                                <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
                             </a>
                         </div>
                     </div>
 
-                    {/* Card 3: Email & Hours */}
-                    <div className="bg-white p-8 rounded-2xl border border-[#E8E5DF] space-y-4 shadow-sm">
-                        <div className="w-12 h-12 rounded-xl bg-[#0D3B2E]/5 text-[#0D3B2E] flex items-center justify-center">
-                            <Mail className="w-6 h-6" />
+                    {/* Email & Hours Card */}
+                    <div className="bg-white p-8 rounded-3xl border border-[#E8E5DF] space-y-4 shadow-sm hover:shadow-md transition-shadow">
+                        <div className="w-12 h-12 rounded-2xl bg-[#035c17]/5 text-[#035c17] flex items-center justify-center">
+                            <Mail className="w-6 h-6 text-[#C5A059]" />
                         </div>
-                        <h3 className="text-xl font-serif font-bold text-[#0D3B2E]">Email & Operations</h3>
+                        <h3 className="text-xl font-serif font-bold text-[#035c17]">Official Email</h3>
                         <p className="text-sm text-[#5C6763] leading-relaxed">
-                            Email: <a href="mailto:hello@mindhilla.com" className="text-[#0D3B2E] font-semibold hover:underline">hello@mindhilla.com</a>
+                            Email: <a href="mailto:hello@mindhilla.com" className="text-[#035c17] font-bold hover:underline">hello@mindhilla.com</a>[cite: 4]
                         </p>
                         <div className="pt-2 text-xs text-[#5C6763] flex items-center gap-2">
-                            <Clock className="w-4 h-4 text-[#0D3B2E]" />
+                            <Clock className="w-4 h-4 text-[#035c17]" />
                             <span>Monday – Saturday: 9:00 AM – 6:00 PM</span>
                         </div>
                     </div>
 
                 </div>
 
-                {/* Contact Form & Location Map Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+                {/* Form and Map Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start pt-6">
 
                     {/* Inquiry Form */}
-                    <div className="bg-white p-8 sm:p-10 rounded-2xl border border-[#E8E5DF] shadow-sm space-y-6">
+                    <div className="bg-white p-8 sm:p-10 rounded-3xl border border-[#E8E5DF] shadow-sm space-y-6">
                         <div className="space-y-1">
-                            <h2 className="text-2xl font-serif font-bold text-[#0D3B2E]">Send Us a Message</h2>
+                            <h2 className="text-2xl font-serif font-bold text-[#035c17]">Send Us a Message</h2>
                             <p className="text-xs text-[#5C6763]">
-                                Leave a message and our team will get back to you within 24 hours.
+                                Leave a detailed message and our clinical intake desk will reply within 24 hours.
                             </p>
                         </div>
 
                         {errorMsg && (
-                            <div className="p-3.5 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
+                            <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
                                 <AlertCircle className="w-4 h-4 shrink-0" />
                                 <span>{errorMsg}</span>
                             </div>
                         )}
 
                         {submitted ? (
-                            <div className="bg-[#0D3B2E] text-white p-8 rounded-xl text-center space-y-3">
+                            <div className="bg-[#035c17] text-white p-8 rounded-2xl text-center space-y-3">
                                 <CheckCircle2 className="w-10 h-10 text-[#C5A059] mx-auto" />
                                 <h3 className="text-xl font-serif font-bold">Message Delivered</h3>
-                                <p className="text-stone-300 text-xs max-w-sm mx-auto">
-                                    Thank you, {fullName}. We have received your inquiry and will respond shortly.
+                                <p className="text-stone-200 text-xs max-w-sm mx-auto">
+                                    Thank you, {fullName}. We have received your inquiry and will respond promptly.
                                 </p>
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-5">
                                 <div>
-                                    <label className="block text-xs font-semibold text-[#0D3B2E] uppercase tracking-wider mb-1">
-                                        Your Name *
+                                    <label className="block text-xs font-semibold text-[#035c17] uppercase tracking-wider mb-1.5">
+                                        Your Full Name *
                                     </label>
                                     <input
                                         type="text"
                                         required
                                         value={fullName}
                                         onChange={(e) => setFullName(e.target.value)}
-                                        placeholder="e.g. John Doe"
-                                        className="w-full px-4 py-2.5 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] focus:outline-none focus:border-[#0D3B2E]"
+                                        placeholder="e.g. Lauretta Okalor"
+                                        className="w-full px-4 py-3 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] focus:outline-none focus:border-[#035c17]"
                                     />
                                 </div>
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div>
-                                        <label className="block text-xs font-semibold text-[#0D3B2E] uppercase tracking-wider mb-1">
+                                        <label className="block text-xs font-semibold text-[#035c17] uppercase tracking-wider mb-1.5">
                                             Email Address *
                                         </label>
                                         <input
@@ -193,13 +216,13 @@ export default function ContactPage() {
                                             required
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
-                                            placeholder="john@example.com"
-                                            className="w-full px-4 py-2.5 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] focus:outline-none focus:border-[#0D3B2E]"
+                                            placeholder="you@example.com"
+                                            className="w-full px-4 py-3 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] focus:outline-none focus:border-[#035c17]"
                                         />
                                     </div>
 
                                     <div>
-                                        <label className="block text-xs font-semibold text-[#0D3B2E] uppercase tracking-wider mb-1">
+                                        <label className="block text-xs font-semibold text-[#035c17] uppercase tracking-wider mb-1.5">
                                             Phone Number *
                                         </label>
                                         <input
@@ -208,30 +231,30 @@ export default function ContactPage() {
                                             value={phone}
                                             onChange={(e) => setPhone(e.target.value)}
                                             placeholder="+234..."
-                                            className="w-full px-4 py-2.5 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] focus:outline-none focus:border-[#0D3B2E]"
+                                            className="w-full px-4 py-3 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] focus:outline-none focus:border-[#035c17]"
                                         />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-semibold text-[#0D3B2E] uppercase tracking-wider mb-1">
-                                        Inquiry Subject *
+                                    <label className="block text-xs font-semibold text-[#035c17] uppercase tracking-wider mb-1.5">
+                                        Subject / Area of Interest *
                                     </label>
                                     <select
                                         value={subject}
                                         onChange={(e) => setSubject(e.target.value)}
-                                        className="w-full px-4 py-2.5 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] bg-white focus:outline-none focus:border-[#0D3B2E]"
+                                        className="w-full px-4 py-3 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] bg-white focus:outline-none focus:border-[#035c17]"
                                     >
                                         <option value="General Consultation">General Consultation</option>
                                         <option value="Academy Masterclass Inquiry">Academy Masterclass Inquiry</option>
                                         <option value="School Outreach Inquiry">School Outreach Inquiry</option>
-                                        <option value="Garden Experience Question">The Garden Experience</option>
-                                        <option value="Media & Speaking Request">Media / Speaking Engagement</option>
+                                        <option value="The Garden Experience Inquiry">The Garden Experience</option>
+                                        <option value="Speaking & Corporate Wellness">Speaking & Corporate Wellness</option>
                                     </select>
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-semibold text-[#0D3B2E] uppercase tracking-wider mb-1">
+                                    <label className="block text-xs font-semibold text-[#035c17] uppercase tracking-wider mb-1.5">
                                         Your Message *
                                     </label>
                                     <textarea
@@ -239,15 +262,15 @@ export default function ContactPage() {
                                         required
                                         value={message}
                                         onChange={(e) => setMessage(e.target.value)}
-                                        placeholder="How can MindHilla assist you today?"
-                                        className="w-full px-4 py-2.5 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] focus:outline-none focus:border-[#0D3B2E]"
+                                        placeholder="How can MindHilla serve you today?"
+                                        className="w-full px-4 py-3 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] focus:outline-none focus:border-[#035c17]"
                                     />
                                 </div>
 
                                 <button
                                     type="submit"
                                     disabled={loading}
-                                    className="w-full inline-flex items-center justify-center gap-2 bg-[#0D3B2E] hover:bg-[#155744] text-white font-semibold py-3.5 px-6 rounded-xl transition shadow-md disabled:opacity-50"
+                                    className="w-full inline-flex items-center justify-center gap-2 bg-[#035c17] hover:bg-[#0b7823] text-white font-semibold py-3.5 px-6 rounded-xl transition shadow-md disabled:opacity-50"
                                 >
                                     {loading ? (
                                         <>
@@ -256,7 +279,7 @@ export default function ContactPage() {
                                         </>
                                     ) : (
                                         <>
-                                            <span>Send Message</span>
+                                            <span>Send Confidential Message</span>
                                             <Send className="w-4 h-4 text-[#C5A059]" />
                                         </>
                                     )}
@@ -265,22 +288,21 @@ export default function ContactPage() {
                         )}
                     </div>
 
-                    {/* Interactive Abuja Map / Location Card */}
-                    <div className="bg-white rounded-2xl border border-[#E8E5DF] overflow-hidden shadow-sm space-y-6">
-                        <div className="p-6 pb-0 space-y-2">
+                    {/* Interactive Google Maps Viewport */}
+                    <div className="bg-white rounded-3xl border border-[#E8E5DF] overflow-hidden shadow-sm space-y-6">
+                        <div className="p-8 pb-0 space-y-2">
                             <span className="text-xs font-bold uppercase tracking-wider text-[#C5A059]">
-                                Our Location
+                                Physical Consultation Suites
                             </span>
-                            <h3 className="text-xl font-serif font-bold text-[#0D3B2E]">
-                                Abuja Consultation Center
+                            <h3 className="text-2xl font-serif font-bold text-[#035c17]">
+                                Abuja Location Map
                             </h3>
                             <p className="text-xs text-[#5C6763]">
-                                Easily accessible in the center of Wuse Zone 5, Abuja FCT.
+                                Centrally situated at 5 Senanga Street, Wuse Zone 5, Abuja FCT[cite: 4].
                             </p>
                         </div>
 
-                        {/* Embedded Google Maps Viewport */}
-                        <div className="relative w-full h-80 bg-stone-100">
+                        <div className="relative w-full h-84 bg-stone-100">
                             <iframe
                                 title="MindHilla Abuja Location Map"
                                 src="https://maps.google.com/maps?q=5%20Senanga%20Street,%20Wuse%20Zone%205,%20Abuja&t=&z=15&ie=UTF8&iwloc=&output=embed"
@@ -290,14 +312,13 @@ export default function ContactPage() {
                             />
                         </div>
 
-                        <div className="p-6 pt-0 text-xs text-[#5C6763] space-y-1">
-                            <p><strong>Note for In-Person Clients:</strong> In-person consultations are by prior appointment only to preserve client confidentiality and schedule buffer times between sessions.</p>
+                        <div className="p-8 pt-0 text-xs text-[#5C6763]">
+                            <p><strong>Note for In-Person Visitors:</strong> To preserve client confidentiality and ensure unhurried sessions, all in-person consultations are strictly scheduled in advance.</p>
                         </div>
                     </div>
 
                 </div>
-
-            </div>
+            </section>
         </div>
     );
 }

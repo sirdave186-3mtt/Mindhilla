@@ -10,7 +10,8 @@ import {
     CheckCircle2,
     Send,
     Loader2,
-    AlertCircle
+    AlertCircle,
+    ArrowRight
 } from 'lucide-react';
 
 export default function SupportPage() {
@@ -27,22 +28,26 @@ export default function SupportPage() {
     const partnershipModels = [
         {
             title: 'Partner with The Garden Experience',
-            desc: 'Support the annual gathering through financial sponsorship, venue collaboration, or creative production[cite: 9, 17].',
+            badge: 'Flagship Event',
+            desc: 'Support the annual gathering through financial sponsorship, venue collaboration, production logistics, or broadcast resources[cite: 4].',
             icon: Sparkles,
         },
         {
             title: 'Sponsor a School Outreach',
-            desc: 'Fund adolescent mental health awareness, counseling resources, and workshops for underserved secondary schools[cite: 10, 17].',
+            badge: 'Youth & Classrooms',
+            desc: 'Fund adolescent mental health education, counseling resources, and workshops for underserved secondary and primary schools[cite: 4].',
             icon: School,
         },
         {
             title: 'Corporate & Institutional Wellness',
-            desc: 'Collaborate to deliver mental wellness frameworks, leadership coaching, and employee debriefs for your team[cite: 6, 8].',
+            badge: 'Corporate Culture',
+            desc: 'Collaborate to deliver ongoing mental wellness frameworks, executive debriefs, and staff resilience training for your organization[cite: 3, 4].',
             icon: Building2,
         },
         {
             title: 'Direct Restorative Giving',
-            desc: 'Contribute toward subsidized therapy sessions for individuals and single parents undergoing severe trauma or crisis[cite: 6].',
+            badge: 'Care Subsidies',
+            desc: 'Contribute toward subsidized therapy sessions for individuals, youths, and single parents navigating severe trauma or emotional crisis[cite: 3, 4].',
             icon: Heart,
         },
     ];
@@ -76,75 +81,116 @@ export default function SupportPage() {
             if (error) throw error;
             setSubmitted(true);
         } catch (err: any) {
-            setErrorMsg(err.message || 'Unable to submit your partnership inquiry. Please try again or reach out on WhatsApp.');
+            setErrorMsg(err.message || 'Unable to submit your partnership inquiry. Please reach out directly on WhatsApp.');
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <div className="py-12 sm:py-20 space-y-16">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        <div className="flex flex-col">
+            {/* 1. CENTRALIZED CINEMATIC HERO SECTION */}
+            <section className="relative overflow-hidden bg-black text-white min-h-[520px] sm:min-h-[580px] flex items-center justify-center">
+                <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url('/images/partner/partner-bg.jpg')` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#024010]/85 via-black/75 to-black/90" />
 
-                {/* Page Header */}
-                <div className="max-w-3xl space-y-4">
-                    <span className="text-xs font-bold uppercase tracking-widest text-[#C5A059] bg-[#C5A059]/10 px-3 py-1 rounded-full border border-[#C5A059]/20">
-                        Strategic Alignment
-                    </span>
-                    <h1 className="text-4xl sm:text-5xl font-serif font-bold text-[#0D3B2E] tracking-tight">
+                <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center flex flex-col items-center">
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/40 border border-white/20 text-xs font-semibold text-[#C5A059] backdrop-blur-md mb-6 shadow-sm">
+                        <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
+                        <span>Strategic Alignment & Transformation</span>
+                    </div>
+
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-[1.18] max-w-3xl">
                         Partner with MindHilla
                     </h1>
-                    <p className="text-[#5C6763] text-base sm:text-lg leading-relaxed">
-                        We partner with visionary organizations, donors, and educational leaders committed to advancing emotional wellness, restoring families, and building resilient communities[cite: 2, 4, 10].
+
+                    <p className="text-stone-100 text-base sm:text-lg leading-relaxed max-w-2xl mt-4">
+                        We partner with visionary organizations, philanthropic donors, and educational institutions committed to advancing emotional wellness, restoring families, and building resilient communities[cite: 3, 4].
+                    </p>
+
+                    <div className="pt-6">
+                        <a
+                            href="#partner-form"
+                            className="inline-flex items-center gap-2 bg-[#035c17] hover:bg-[#0b7823] text-white text-sm font-semibold px-7 py-3.5 rounded-full transition-all shadow-lg hover:scale-105 border border-white/20"
+                        >
+                            <span>Submit Partnership Proposal</span>
+                            <ArrowRight className="w-4 h-4 text-[#C5A059]" />
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            {/* 2. PARTNERSHIP MODELS (UNIFORM LIFTED CARDS) */}
+            <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div className="max-w-3xl space-y-3">
+                    <span className="text-xs font-bold uppercase tracking-widest text-[#C5A059]">
+                        Avenues of Impact
+                    </span>
+                    <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#035c17]">
+                        How You Can Collaborate with Us
+                    </h2>
+                    <p className="text-sm sm:text-base text-[#5C6763] leading-relaxed">
+                        Choose a pillar below to align your organization or personal giving with sustainable emotional wellness initiatives[cite: 4].
                     </p>
                 </div>
 
-                {/* Partnership Models Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {partnershipModels.map((model, idx) => {
                         const Icon = model.icon;
                         return (
                             <div
                                 key={idx}
-                                className="bg-white p-6 rounded-2xl border border-[#E8E5DF] space-y-3 hover:border-[#0D3B2E]/30 transition-all shadow-sm"
+                                className="bg-white p-7 rounded-3xl border border-[#E8E5DF] flex flex-col justify-between hover:shadow-xl hover:border-[#035c17]/30 transition-all duration-300 shadow-sm"
                             >
-                                <div className="w-10 h-10 rounded-xl bg-[#0D3B2E]/5 text-[#0D3B2E] flex items-center justify-center">
-                                    <Icon className="w-5 h-5" />
+                                <div className="space-y-4">
+                                    <div className="flex items-center justify-between">
+                                        <div className="w-12 h-12 rounded-2xl bg-[#035c17]/5 text-[#035c17] flex items-center justify-center">
+                                            <Icon className="w-6 h-6 text-[#C5A059]" />
+                                        </div>
+                                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#024010] bg-[#C5A059] px-2.5 py-0.5 rounded-full">
+                                            {model.badge}
+                                        </span>
+                                    </div>
+                                    <h3 className="text-lg font-serif font-bold text-[#035c17] leading-snug">
+                                        {model.title}
+                                    </h3>
+                                    <p className="text-xs text-[#5C6763] leading-relaxed">
+                                        {model.desc}
+                                    </p>
                                 </div>
-                                <h3 className="text-base font-serif font-bold text-[#0D3B2E]">
-                                    {model.title}
-                                </h3>
-                                <p className="text-xs text-[#5C6763] leading-relaxed">
-                                    {model.desc}
-                                </p>
                             </div>
                         );
                     })}
                 </div>
+            </section>
 
-                {/* Partnership Form Section */}
-                <div className="max-w-3xl mx-auto">
+            {/* 3. PROPOSAL INTAKE FORM */}
+            <section id="partner-form" className="py-20 bg-[#FAF8F5] border-t border-[#E8E5DF]">
+                <div className="max-w-3xl mx-auto px-4 sm:px-6">
                     {submitted ? (
-                        <div className="bg-[#0D3B2E] text-white p-8 sm:p-10 rounded-2xl shadow-xl text-center space-y-4 border border-[#175240]">
+                        <div className="bg-[#035c17] text-white p-10 rounded-3xl shadow-xl text-center space-y-4 border border-white/10">
                             <div className="w-12 h-12 bg-[#C5A059]/20 text-[#C5A059] rounded-full flex items-center justify-center mx-auto">
                                 <CheckCircle2 className="w-6 h-6" />
                             </div>
                             <h3 className="text-2xl font-serif font-bold text-white">Partnership Inquiry Received</h3>
-                            <p className="text-stone-300 text-sm max-w-md mx-auto">
-                                Thank you for your willingness to partner with MindHilla. Our leadership team will review your message and reach out promptly.
+                            <p className="text-stone-200 text-sm max-w-md mx-auto leading-relaxed">
+                                Thank you for reaching out to partner with MindHilla. Our executive directorate will review your proposal and schedule a preliminary alignment discussion[cite: 4].
                             </p>
                         </div>
                     ) : (
-                        <form onSubmit={handleSubmit} className="bg-white p-8 sm:p-10 rounded-2xl border border-[#E8E5DF] shadow-sm space-y-6">
+                        <form onSubmit={handleSubmit} className="bg-white p-8 sm:p-12 rounded-3xl border border-[#E8E5DF] shadow-sm space-y-6">
                             <div className="space-y-1">
-                                <h3 className="text-2xl font-serif font-bold text-[#0D3B2E]">Initiate a Partnership</h3>
+                                <h3 className="text-2xl font-serif font-bold text-[#035c17]">Initiate a Partnership</h3>
                                 <p className="text-xs text-[#5C6763]">
-                                    Tell us about your organization and how you envision collaborating with MindHilla.
+                                    Tell us about your organization and how you envision collaborating with MindHilla[cite: 4].
                                 </p>
                             </div>
 
                             {errorMsg && (
-                                <div className="p-3.5 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
+                                <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
                                     <AlertCircle className="w-4 h-4 shrink-0" />
                                     <span>{errorMsg}</span>
                                 </div>
@@ -152,7 +198,7 @@ export default function SupportPage() {
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                 <div>
-                                    <label className="block text-xs font-semibold text-[#0D3B2E] uppercase tracking-wider mb-1.5">
+                                    <label className="block text-xs font-semibold text-[#035c17] uppercase tracking-wider mb-1.5">
                                         Organization / Entity Name *
                                     </label>
                                     <input
@@ -160,13 +206,13 @@ export default function SupportPage() {
                                         required
                                         value={orgName}
                                         onChange={(e) => setOrgName(e.target.value)}
-                                        placeholder="e.g. Hope Foundation or Individual"
-                                        className="w-full px-4 py-2.5 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] focus:outline-none focus:border-[#0D3B2E]"
+                                        placeholder="e.g. Hope Alliance or Individual"
+                                        className="w-full px-4 py-3 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] focus:outline-none focus:border-[#035c17]"
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-semibold text-[#0D3B2E] uppercase tracking-wider mb-1.5">
+                                    <label className="block text-xs font-semibold text-[#035c17] uppercase tracking-wider mb-1.5">
                                         Contact Person *
                                     </label>
                                     <input
@@ -175,14 +221,14 @@ export default function SupportPage() {
                                         value={contactPerson}
                                         onChange={(e) => setContactPerson(e.target.value)}
                                         placeholder="Your Full Name"
-                                        className="w-full px-4 py-2.5 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] focus:outline-none focus:border-[#0D3B2E]"
+                                        className="w-full px-4 py-3 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] focus:outline-none focus:border-[#035c17]"
                                     />
                                 </div>
                             </div>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                 <div>
-                                    <label className="block text-xs font-semibold text-[#0D3B2E] uppercase tracking-wider mb-1.5">
+                                    <label className="block text-xs font-semibold text-[#035c17] uppercase tracking-wider mb-1.5">
                                         Email Address *
                                     </label>
                                     <input
@@ -190,13 +236,13 @@ export default function SupportPage() {
                                         required
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        placeholder="contact@org.com"
-                                        className="w-full px-4 py-2.5 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] focus:outline-none focus:border-[#0D3B2E]"
+                                        placeholder="contact@entity.com"
+                                        className="w-full px-4 py-3 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] focus:outline-none focus:border-[#035c17]"
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-semibold text-[#0D3B2E] uppercase tracking-wider mb-1.5">
+                                    <label className="block text-xs font-semibold text-[#035c17] uppercase tracking-wider mb-1.5">
                                         Phone / WhatsApp *
                                     </label>
                                     <input
@@ -205,54 +251,54 @@ export default function SupportPage() {
                                         value={phone}
                                         onChange={(e) => setPhone(e.target.value)}
                                         placeholder="+234..."
-                                        className="w-full px-4 py-2.5 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] focus:outline-none focus:border-[#0D3B2E]"
+                                        className="w-full px-4 py-3 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] focus:outline-none focus:border-[#035c17]"
                                     />
                                 </div>
                             </div>
 
                             <div>
-                                <label className="block text-xs font-semibold text-[#0D3B2E] uppercase tracking-wider mb-1.5">
+                                <label className="block text-xs font-semibold text-[#035c17] uppercase tracking-wider mb-1.5">
                                     Partnership Area *
                                 </label>
                                 <select
                                     value={inquiryType}
                                     onChange={(e) => setInquiryType(e.target.value)}
-                                    className="w-full px-4 py-2.5 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] bg-white focus:outline-none focus:border-[#0D3B2E]"
+                                    className="w-full px-4 py-3 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] bg-white focus:outline-none focus:border-[#035c17]"
                                 >
-                                    <option value="Partner with The Garden Experience">Partner with The Garden Experience[cite: 17]</option>
-                                    <option value="Sponsor a School Outreach">Sponsor a School Outreach Program[cite: 17]</option>
-                                    <option value="Corporate Wellness Partnership">Corporate Wellness Partnership[cite: 17]</option>
-                                    <option value="Direct Philanthropic Support">Direct Philanthropic Support[cite: 17]</option>
+                                    <option value="Partner with The Garden Experience">Partner with The Garden Experience[cite: 4]</option>
+                                    <option value="Sponsor a School Outreach">Sponsor a School Outreach Program[cite: 4]</option>
+                                    <option value="Corporate Wellness Partnership">Corporate Wellness Partnership[cite: 4]</option>
+                                    <option value="Direct Philanthropic Support">Direct Philanthropic Support[cite: 4]</option>
                                 </select>
                             </div>
 
                             <div>
-                                <label className="block text-xs font-semibold text-[#0D3B2E] uppercase tracking-wider mb-1.5">
-                                    Proposed Collaboration Details *
+                                <label className="block text-xs font-semibold text-[#035c17] uppercase tracking-wider mb-1.5">
+                                    Proposed Collaboration Scope *
                                 </label>
                                 <textarea
                                     rows={4}
                                     required
                                     value={details}
                                     onChange={(e) => setDetails(e.target.value)}
-                                    placeholder="Share details regarding your proposed partnership, sponsorship scope, or inquiry..."
-                                    className="w-full px-4 py-2.5 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] focus:outline-none focus:border-[#0D3B2E]"
+                                    placeholder="Share details regarding your proposed sponsorship, program scope, or institutional collaboration..."
+                                    className="w-full px-4 py-3 rounded-xl border border-[#E8E5DF] text-sm text-[#1C2421] focus:outline-none focus:border-[#035c17]"
                                 />
                             </div>
 
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="w-full inline-flex items-center justify-center gap-2 bg-[#0D3B2E] hover:bg-[#155744] text-white font-semibold py-3.5 px-6 rounded-xl transition shadow-md disabled:opacity-50"
+                                className="w-full inline-flex items-center justify-center gap-2 bg-[#035c17] hover:bg-[#0b7823] text-white font-semibold py-3.5 px-6 rounded-xl transition shadow-md disabled:opacity-50"
                             >
                                 {loading ? (
                                     <>
                                         <Loader2 className="w-4 h-4 animate-spin text-[#C5A059]" />
-                                        <span>Submitting Inquiry...</span>
+                                        <span>Submitting Proposal...</span>
                                     </>
                                 ) : (
                                     <>
-                                        <span>Submit Partnership Proposal</span>
+                                        <span>Submit Strategic Proposal</span>
                                         <Send className="w-4 h-4 text-[#C5A059]" />
                                     </>
                                 )}
@@ -260,8 +306,7 @@ export default function SupportPage() {
                         </form>
                     )}
                 </div>
-
-            </div>
+            </section>
         </div>
     );
 }
