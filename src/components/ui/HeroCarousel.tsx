@@ -1,171 +1,176 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { ArrowRight, ChevronLeft, ChevronRight, ShieldCheck, Building2 } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+
+interface Slide {
+    id: number;
+    badge: string;
+    heading: string;
+    subheading: string;
+    image: string;
+    primaryCtaText: string;
+    primaryCtaHref: string;
+    secondaryCtaText?: string;
+    secondaryCtaHref?: string;
+}
+
+const slides: Slide[] = [
+    {
+        id: 1,
+        badge: 'Comprehensive Wholeness',
+        heading: 'More Than Healing. A Journey to Wholeness.',
+        subheading:
+            'From therapy and learning to speaking, community outreach, media, and transformational experiences, MindHilla creates pathways that inspire lasting change.',
+        image: '/images/hero/header-1.png',
+        primaryCtaText: 'Book a Session',
+        primaryCtaHref: '/services',
+        secondaryCtaText: 'Explore Initiatives',
+        secondaryCtaHref: '/garden-experience',
+    },
+    {
+        id: 2,
+        badge: 'Clinical Care & Counseling',
+        heading: 'Heal. Grow. Transform.',
+        subheading:
+            'Through therapy, education, and practical resources, MindHilla equips you to understand yourself, navigate life’s challenges, and build healthier relationships.',
+        image: '/images/hero/header-2.png',
+        primaryCtaText: 'Our Services',
+        primaryCtaHref: '/services',
+        secondaryCtaText: 'MindHilla Academy',
+        secondaryCtaHref: '/academy',
+    },
+    {
+        id: 3,
+        badge: 'Relational Renewal',
+        heading: 'Restoring Hearts. Nurturing Love.',
+        subheading:
+            'Safe, trauma-informed, and faith-integrated counseling for individuals, couples, and families navigating grief, addiction, and emotional transitions.',
+        image: '/images/hero/header-3.png',
+        primaryCtaText: 'Get in Touch',
+        primaryCtaHref: '/contact',
+        secondaryCtaText: 'Partner with Us',
+        secondaryCtaHref: '/support',
+    },
+];
 
 export default function HeroCarousel() {
-    const [currentSlide, setCurrentSlide] = useState(0);
+    const [current, setCurrent] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
 
-    const slides = [
-        {
-            id: 1,
-            badge: 'Welcome to MindHilla',
-            heading: 'Your Journey to Wholeness Begins Here',
-            copy: 'Experience a compassionate space for healing, self-discovery, healthier relationships, and personal transformation. Through therapy, education, and meaningful experiences, MindHilla walks with you toward emotional well-being, purpose, and a more whole life.',
-            ctaText: 'Learn More',
-            ctaHref: '/about',
-            image: '/images/hero/header-1.jpg',
-        },
-        {
-            id: 2,
-            badge: 'Clinical Care & Counseling',
-            heading: 'Heal. Grow. Transform.',
-            copy: 'Through therapy, education, and practical resources, MindHilla equips you to understand yourself, navigate life’s challenges, build healthier relationships, and grow with intention.',
-            ctaText: 'Book a Session',
-            ctaHref: '/services',
-            image: '/images/hero/header-2.png',
-        },
-        {
-            id: 3,
-            badge: 'Comprehensive Wholeness',
-            heading: 'More Than Healing. A Journey to Wholeness.',
-            copy: 'From therapy and learning to speaking, community outreach, media, and transformational experiences, MindHilla creates pathways that inspire healing, purpose, connection, and lasting change.',
-            ctaText: 'Explore Pathways',
-            ctaHref: '/about',
-            image: '/images/hero/header-3.png',
-        },
-        {
-            id: 4,
-            badge: 'Community Transformation',
-            heading: 'Taking Mental Health to the Classrooms',
-            copy: 'We equip students, educators and school communities with practical tools for emotional wellness, healthy relationships, self-awareness and personal growth. Building healthier minds. Shaping healthier futures.',
-            ctaText: 'School Outreach',
-            ctaHref: '/school-outreach',
-            image: '/images/hero/header-4.png',
-        },
-    ];
+    const nextSlide = useCallback(() => {
+        setCurrent((prev) => (prev + 1) % slides.length);
+    }, []);
+
+    const prevSlide = useCallback(() => {
+        setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+    }, []);
 
     useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % slides.length);
-        }, 7000);
-        return () => clearInterval(timer);
-    }, [slides.length]);
-
-    const prevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-    };
-
-    const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length);
-    };
+        if (isPaused) return;
+        const interval = setInterval(nextSlide, 7000);
+        return () => clearInterval(interval);
+    }, [nextSlide, isPaused]);
 
     return (
-        <div className="relative overflow-hidden bg-[#024010] text-white min-h-[640px] sm:min-h-[720px] flex items-center">
-            {/* Background Slides */}
-            {slides.map((slide, index) => (
+        <section
+            className="relative overflow-hidden bg-black text-white min-h-[580px] sm:min-h-[640px] lg:min-h-[700px] flex items-center justify-center"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onTouchStart={() => setIsPaused(true)}
+            onTouchEnd={() => setIsPaused(false)}
+        >
+            {/* Background Slides with Crossfade */}
+            {slides.map((slide, idx) => (
                 <div
                     key={slide.id}
-                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === current ? 'opacity-100 z-0' : 'opacity-0 -z-10'
                         }`}
                 >
                     <div
-                        className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 scale-100"
+                        className="absolute inset-0 bg-cover bg-center sm:bg-[center_top] transition-transform duration-1000 scale-100"
                         style={{ backgroundImage: `url('${slide.image}')` }}
                     />
-                    {/* Asymmetric Gradient: deep on the left for contrast, open on the right to reveal the subject */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-[#024010]/80 to-transparent" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                    {/* Mobile-first darker gradient so text remains 100% legible */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/70 sm:bg-gradient-to-r sm:from-black/90 sm:via-black/75 sm:to-black/40" />
                 </div>
             ))}
 
-            {/* Slide Text Content — Left Aligned */}
-            <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
-                <div className="max-w-2xl text-left space-y-6">
+            {/* Main Content Container */}
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-16 sm:py-24 flex flex-col justify-center items-center text-center">
+                <div className="max-w-3xl flex flex-col items-center">
 
-                    {/* Pill Badge */}
-                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 border border-white/20 text-xs font-semibold text-[#C5A059] backdrop-blur-md shadow-sm">
-                        <span>{slides[currentSlide].badge}</span>
+                    {/* Frosted Badge */}
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/20 text-[11px] sm:text-xs font-semibold text-[#C5A059] backdrop-blur-md mb-4 sm:mb-6 shadow-sm">
+                        <Sparkles className="w-3.5 h-3.5 text-[#C5A059] shrink-0" />
+                        <span>{slides[current].badge}</span>
                     </div>
 
-                    {/* Heading */}
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-[1.15] min-h-[140px] sm:min-h-[160px] flex items-center">
-                        {slides[currentSlide].heading}
+                    {/* Heading — Scaled for mobile */}
+                    <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-white leading-tight sm:leading-[1.18] drop-shadow-sm min-h-[72px] sm:min-h-[auto] flex items-center justify-center">
+                        {slides[current].heading}
                     </h1>
 
-                    {/* Sub-copy */}
-                    <p className="text-stone-100 text-sm sm:text-lg leading-relaxed max-w-xl min-h-[80px]">
-                        {slides[currentSlide].copy}
+                    {/* Subheading / Description */}
+                    <p className="mt-3 sm:mt-5 text-xs sm:text-base md:text-lg text-stone-200 leading-relaxed max-w-2xl font-normal drop-shadow-xs">
+                        {slides[current].subheading}
                     </p>
 
-                    {/* Action CTAs */}
-                    <div className="flex flex-wrap items-center gap-4 pt-2">
+                    {/* CTA Action Buttons */}
+                    <div className="mt-6 sm:mt-8 flex flex-col xs:flex-row items-center justify-center gap-3 w-full sm:w-auto">
                         <Link
-                            href={slides[currentSlide].ctaHref}
-                            className="inline-flex items-center gap-2 bg-[#035c17] hover:bg-[#0b7823] text-white text-sm font-semibold px-7 py-3.5 rounded-full transition-all shadow-lg hover:scale-105 border border-white/20"
+                            href={slides[current].primaryCtaHref}
+                            className="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-[#035c17] hover:bg-[#0b7823] text-white text-xs sm:text-sm font-semibold px-6 sm:px-8 py-3 sm:py-3.5 rounded-full transition-all shadow-lg active:scale-95 border border-white/15"
                         >
-                            <span>{slides[currentSlide].ctaText}</span>
+                            <span>{slides[current].primaryCtaText}</span>
                             <ArrowRight className="w-4 h-4 text-[#C5A059]" />
                         </Link>
 
-                        <Link
-                            href="/support"
-                            className="inline-flex items-center gap-2 bg-[#C5A059] hover:bg-[#d8b772] text-[#024010] text-sm font-bold px-7 py-3.5 rounded-full transition-all shadow-lg hover:scale-105"
-                        >
-                            <span>Partner with Us</span>
-                            <ArrowRight className="w-4 h-4" />
-                        </Link>
-                    </div>
-
-                    {/* Trust Indicators */}
-                    <div className="flex flex-wrap items-center gap-6 pt-6 text-xs text-stone-200">
-                        <div className="flex items-center gap-1.5">
-                            <ShieldCheck className="w-4 h-4 text-[#C5A059]" />
-                            <span>Strict Clinical Confidentiality</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                            <Building2 className="w-4 h-4 text-[#C5A059]" />
-                            <span>Abuja Center & Global Virtual Sessions</span>
-                        </div>
+                        {slides[current].secondaryCtaText && (
+                            <Link
+                                href={slides[current].secondaryCtaHref!}
+                                className="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-semibold px-6 sm:px-8 py-3 sm:py-3.5 rounded-full transition-all backdrop-blur-md border border-white/20 active:scale-95"
+                            >
+                                <span>{slides[current].secondaryCtaText}</span>
+                            </Link>
+                        )}
                     </div>
 
                 </div>
             </div>
 
-            {/* Pagination Dots & Navigation Controls */}
-            <div className="absolute z-20 bottom-8 left-0 right-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-                {/* Pagination Dots */}
-                <div className="flex items-center space-x-2.5">
-                    {slides.map((_, idx) => (
-                        <button
-                            key={idx}
-                            onClick={() => setCurrentSlide(idx)}
-                            className={`h-2.5 rounded-full transition-all duration-300 ${idx === currentSlide ? 'w-8 bg-[#C5A059]' : 'w-2.5 bg-white/40 hover:bg-white/70'
-                                }`}
-                            aria-label={`Go to slide ${idx + 1}`}
-                        />
-                    ))}
-                </div>
+            {/* Prev / Next Chevrons — Hidden on small mobile screens to prevent thumb collisions */}
+            <button
+                onClick={prevSlide}
+                aria-label="Previous Slide"
+                className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/40 hover:bg-[#035c17] border border-white/20 text-white items-center justify-center transition-all backdrop-blur-sm shadow-md"
+            >
+                <ChevronLeft className="w-5 h-5 text-[#C5A059]" />
+            </button>
 
-                {/* Previous / Next Controls */}
-                <div className="flex items-center space-x-2">
+            <button
+                onClick={nextSlide}
+                aria-label="Next Slide"
+                className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/40 hover:bg-[#035c17] border border-white/20 text-white items-center justify-center transition-all backdrop-blur-sm shadow-md"
+            >
+                <ChevronRight className="w-5 h-5 text-[#C5A059]" />
+            </button>
+
+            {/* Slide Indicators (Pills) */}
+            <div className="absolute bottom-4 sm:bottom-6 z-20 flex items-center gap-2">
+                {slides.map((_, idx) => (
                     <button
-                        onClick={prevSlide}
-                        className="w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 border border-white/20 flex items-center justify-center text-white transition-all backdrop-blur-sm"
-                        aria-label="Previous Slide"
-                    >
-                        <ChevronLeft className="w-5 h-5" />
-                    </button>
-                    <button
-                        onClick={nextSlide}
-                        className="w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 border border-white/20 flex items-center justify-center text-white transition-all backdrop-blur-sm"
-                        aria-label="Next Slide"
-                    >
-                        <ChevronRight className="w-5 h-5" />
-                    </button>
-                </div>
+                        key={idx}
+                        onClick={() => setCurrent(idx)}
+                        aria-label={`Go to slide ${idx + 1}`}
+                        className={`transition-all duration-300 rounded-full h-1.5 sm:h-2 ${idx === current
+                                ? 'w-6 sm:w-8 bg-[#C5A059]'
+                                : 'w-2 sm:w-2.5 bg-white/40 hover:bg-white/70'
+                            }`}
+                    />
+                ))}
             </div>
-        </div>
+        </section>
     );
 }
