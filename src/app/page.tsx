@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import HeroCarousel from '@/components/ui/HeroCarousel';
+import PartnerLogos from '@/components/ui/PartnerLogos';
 import {
   ArrowRight,
   Sparkles,
@@ -66,6 +67,7 @@ export default function HomePage() {
     <div className="flex flex-col">
       {/* 1. HERO IMAGE CAROUSEL WITH WRITE-UPS */}
       <HeroCarousel />
+      <PartnerLogos />
 
       {/* 2. ABOUT MINDHILLA STATEMENT */}
       <section className="py-20 bg-white border-b border-[#E8E5DF]">

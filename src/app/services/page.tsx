@@ -29,7 +29,7 @@ export default function ServicesPage() {
             badge: 'Clinical Care & Counseling',
             heading: 'Therapy & Clinical Counseling',
             copy: 'Every journey begins with a safe, confidential space. Our practitioners integrate professional therapeutic insight, clinical ethics, and faith-informed perspectives to facilitate deep, lasting transformation.',
-            image: '/images/services/therapy.jpg',
+            image: '/images/services/therapy.jpeg',
             ctaText: 'Book a Consultation',
             ctaHref: '#intake-form',
         },
