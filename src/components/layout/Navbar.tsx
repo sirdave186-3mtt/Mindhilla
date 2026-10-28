@@ -50,15 +50,19 @@ export default function Navbar() {
 
             <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
                 {/* Brand Logo */}
-                <Link href="/" className="flex items-center gap-3 shrink-0">
-                    <div className="w-10 h-10 rounded-full bg-[#0D3B2E] flex items-center justify-center text-white font-serif font-bold text-xl shadow-sm border border-[#C5A059]/40">
-                        M
+                <Link href="/" className="flex items-center gap-3 group">
+                    <div className="relative w-10 h-10 rounded-full overflow-hidden border border-[#C5A059]/40 bg-white shadow-xs flex items-center justify-center shrink-0">
+                        <img
+                            src="/images/icon.png"
+                            alt="MindHilla Logo"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-xl font-bold tracking-tight text-[#0D3B2E] font-serif">
+                        <span className="text-xl font-serif font-bold tracking-tight text-[#035c17] leading-none">
                             MindHilla
                         </span>
-                        <span className="text-[10px] text-[#5C6763] tracking-widest uppercase -mt-1">
+                        <span className="text-[9px] uppercase tracking-widest text-[#5C6763] mt-0.5 font-semibold">
                             Wellness & Therapy
                         </span>
                     </div>

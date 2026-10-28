@@ -26,8 +26,12 @@ export default function Footer() {
                     {/* Column 1: Brand & Socials (4 Cols) */}
                     <div className="lg:col-span-4 space-y-5">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full bg-[#035c17] border border-[#C5A059]/40 text-white flex items-center justify-center font-serif font-bold text-lg shadow-sm">
-                                M
+                            <div className="relative w-10 h-10 rounded-full overflow-hidden border border-[#C5A059]/40 bg-white shadow-xs flex items-center justify-center shrink-0">
+                                <img
+                                    src="/images/icon.png"
+                                    alt="MindHilla Logo"
+                                    className="w-full h-full object-cover"
+                                />
                             </div>
                             <span className="text-2xl font-serif font-bold tracking-tight text-white">
                                 MindHilla
